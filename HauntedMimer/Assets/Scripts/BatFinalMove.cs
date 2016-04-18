@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class BatFinalMove : MonoBehaviour {
-	public int speed = 50;
+	public int speed = 80;
 	public int spaces = 50;
 	// Use this for initialization
 	void Start () {
@@ -11,6 +11,7 @@ public class BatFinalMove : MonoBehaviour {
 		//MoveInvoker ();
 		//StartCoroutine("ContinuousMove", startingZpos);
 		//StartCoroutine("ContinuousMoveObject", startingZpos2);
+		this.gameObject.SetActive(false);
 	}
 	
 	void Update () {
@@ -19,6 +20,7 @@ public class BatFinalMove : MonoBehaviour {
 
 	// called by the trigger cube
 	public void BatStart(){
+		this.gameObject.SetActive(true);
 		float startingZpos = this.transform.position.z;
 		//float startingZpos2 = GameObject.FindGameObjectWithTag("Bat").transform.position.z;
 		//MoveInvoker ();
@@ -37,13 +39,14 @@ public class BatFinalMove : MonoBehaviour {
 		var finalZ = z - spaces;
 		while (this.transform.position.z > finalZ) {
 			yield return new WaitForSeconds(0F);
-			this.GetComponent<Transform> ().Translate(0,0,Time.deltaTime * speed * -1);
+			this.GetComponent<Transform> ().Translate(0,0,Time.deltaTime * speed * 1);
 			/*z--;
 			if (this.transform.position.z == finalZ) {
 				this.GetComponent<Renderer> ().enabled = false;
 			}*/
 		}
-		this.GetComponent<Renderer> ().enabled = false;
+		//this.GetComponent<Renderer> ().enabled = true;
+		this.gameObject.SetActive(false);
 	}
 
 	// used to move all bats
