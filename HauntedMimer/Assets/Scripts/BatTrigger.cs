@@ -4,6 +4,8 @@ using System.Collections;
 public class BatTrigger : MonoBehaviour {
 	//public BatFinalMove script;
 	public BatFinalMove[] scripts;
+	bool once = true;
+	public AudioClip batsound;
 	// Use this for initialization
 	void Start () {
 	
@@ -15,9 +17,12 @@ public class BatTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		// play a sound needed
-		foreach(BatFinalMove scr in scripts){
-			scr.BatStart ();
+		if (once == true) {
+			AudioSource.PlayClipAtPoint(batsound, other.transform.position);
+			foreach (BatFinalMove scr in scripts) {
+				scr.BatStart ();
+			}
+			once = false;
 		}
 	}
 }
