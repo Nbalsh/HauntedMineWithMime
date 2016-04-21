@@ -8,6 +8,9 @@ TagManager:
   - Metall
   - Fire
   - Bat
+  - MainUIText
+  - TextTrigger
+  - NextLevel
   layers:
   - Default
   - TransparentFX
